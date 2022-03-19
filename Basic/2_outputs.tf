@@ -3,7 +3,7 @@ resource "aws_eip" "tf-eip" {
 }
 
 output "eip" {
-    value = aws_eip.tf-eip 
+  value = aws_eip.tf-eip
 }
 
 resource "aws_s3_bucket" "tfbucketvidy" {
