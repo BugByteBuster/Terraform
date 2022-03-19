@@ -1,19 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "4.6.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "us-east-1"
-  secret_key = ""
-  access_key = ""
-}
-
-resource "aws_security_group" "tf-sec-grp" {
+resource "aws_security_group" "tf-sec-grp4" {
     name = "tf-sec-grp"
     ingress {
         from_port = 80
