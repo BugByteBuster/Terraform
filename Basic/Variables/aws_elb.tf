@@ -9,7 +9,12 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
+<<<<<<< HEAD
     
+=======
+  secret_key = ""
+  access_key = ""
+>>>>>>> 744f817cc29ce600bf14196a2c942465bcc3a1de
 }
 
 resource "aws_elb" "tf-elb" {
