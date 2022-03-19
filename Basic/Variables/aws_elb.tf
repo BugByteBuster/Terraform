@@ -9,8 +9,7 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-  secret_key = "ItGgUUKtJo6GV8SadXps6cx3b9jHTn94bNy+cWAj"
-  access_key = "AKIAVOZEWIATG7PIR4WY"
+    
 }
 
 resource "aws_elb" "tf-elb" {
