@@ -1,14 +1,14 @@
 variable "name" {
-  type        = "string"
+  type        = string
   description = "policy name"
 }
 
 variable "description" {
-  type        = "string"
+  type        = string
   description = "description of the iam policy"
 }
 
 variable "policy" {
-  type        = "string"
+  type        = string
   description = "IAM policy document"
 }

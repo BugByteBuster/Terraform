@@ -19,7 +19,7 @@ variable "vpc_id" {
 }
 
 variable "ami" {
-  type = string
+  type        = string
   description = "AMI ID"
 }
 

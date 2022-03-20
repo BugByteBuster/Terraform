@@ -16,9 +16,9 @@ module "instance_profile" {
 ###########################
 
 resource "aws_lb" "load_balancer" {
-  name               = "ext-alb-${var.name}"
-  internal           = "false"
-  load_balancer_type = "application"
+  name                             = "ext-alb-${var.name}"
+  internal                         = "false"
+  load_balancer_type               = "application"
   subnets                          = data.terraform_remote_state.vpc.outputs.public_subnets
   enable_cross_zone_load_balancing = "true"
   security_groups                  = [aws_security_group.alb_security_group.id]
@@ -50,10 +50,10 @@ resource "aws_lb_target_group" "target_group" {
   vpc_id   = data.terraform_remote_state.vpc.outputs.vpc_id
 
   health_check {
-    interval = "20"
-    port     = 80
-    protocol = "HTTP"
-    path     = var.health_check_path
+    interval          = "20"
+    port              = 80
+    protocol          = "HTTP"
+    path              = var.health_check_path
     healthy_threshold = 3
   }
 
@@ -93,56 +93,56 @@ resource "aws_autoscaling_group" "autoscaling_group" {
 }
 
 resource "aws_autoscaling_policy" "web_policy_up" {
-  name = "web_policy_up"
-  scaling_adjustment = 1
-  adjustment_type = "ChangeInCapacity"
-  cooldown = 300
+  name                   = "web_policy_up"
+  scaling_adjustment     = 1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.autoscaling_group.name
 }
 
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
-  alarm_name = "web_cpu_alarm_up"
+  alarm_name          = "web_cpu_alarm_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods = "2"
-  metric_name = "CPUUtilization"
-  namespace = "AWS/EC2"
-  period = "120"
-  statistic = "Average"
-  threshold = "60"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "60"
 
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.autoscaling_group.name
   }
 
   alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions = [ aws_autoscaling_policy.web_policy_up.arn ]
+  alarm_actions     = [aws_autoscaling_policy.web_policy_up.arn]
 }
 
 
 resource "aws_autoscaling_policy" "web_policy_down" {
-  name = "web_policy_down"
-  scaling_adjustment = -1
-  adjustment_type = "ChangeInCapacity"
-  cooldown = 300
+  name                   = "web_policy_down"
+  scaling_adjustment     = -1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.autoscaling_group.name
 }
 
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
-  alarm_name = "web_cpu_alarm_down"
+  alarm_name          = "web_cpu_alarm_down"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods = "2"
-  metric_name = "CPUUtilization"
-  namespace = "AWS/EC2"
-  period = "120"
-  statistic = "Average"
-  threshold = "10"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "10"
 
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.autoscaling_group.name
   }
 
   alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions = [ aws_autoscaling_policy.web_policy_down.arn ]
+  alarm_actions     = [aws_autoscaling_policy.web_policy_down.arn]
 }
 resource "aws_launch_configuration" "launch_configuration" {
   name = var.launch_configuration_name

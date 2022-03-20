@@ -16,9 +16,9 @@ module "instance_profile" {
 ###########################
 
 resource "aws_lb" "load_balancer" {
-  name               = "ext-alb-${var.name}"
-  internal           = "false"
-  load_balancer_type = "application"
+  name                             = "ext-alb-${var.name}"
+  internal                         = "false"
+  load_balancer_type               = "application"
   subnets                          = data.terraform_remote_state.vpc.outputs.public_subnets
   enable_cross_zone_load_balancing = "true"
   security_groups                  = [aws_security_group.alb_security_group.id]
@@ -50,10 +50,10 @@ resource "aws_lb_target_group" "target_group" {
   vpc_id   = data.terraform_remote_state.vpc.outputs.vpc_id
 
   health_check {
-    interval = "20"
-    port     = 80
-    protocol = "HTTP"
-    path     = var.health_check_path
+    interval          = "20"
+    port              = 80
+    protocol          = "HTTP"
+    path              = var.health_check_path
     healthy_threshold = 3
   }
 

@@ -1,6 +1,6 @@
 resource "aws_iam_policy" "policy" {
-  name        = "${var.name}"
-  description = "${var.description}"
+  name        = var.name
+  description = var.description
 
-  policy = "${var.policy}"
+  policy = var.policy
 }
