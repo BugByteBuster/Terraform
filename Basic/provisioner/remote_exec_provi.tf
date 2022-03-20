@@ -2,7 +2,7 @@ resource "aws_instance" "my-ec2" {
   ami                    = "ami-0c02fb55956c7d316"
   instance_type          = "t2.micro"
   key_name               = "ur_key"
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
 
   provisioner "remote-exec" {
     inline = [
@@ -18,7 +18,7 @@ resource "aws_instance" "my-ec2" {
   }
 }
 
-resource "aws_security_group" "allow_ssh" {
+resource "aws_security_group" "allow_ssh_http" {
   name        = "allow_ssh"
   description = "Security grp to allow ssh"
   ingress {
