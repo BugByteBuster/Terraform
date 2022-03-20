@@ -1,0 +1,5 @@
+terraform workspace new dev
+terraform workspace new stage
+terraform workspace new prod
+terraform workspace select <>
+terraform workspace list
