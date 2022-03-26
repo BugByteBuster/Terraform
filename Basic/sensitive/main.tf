@@ -3,6 +3,6 @@ locals {
 }
 
 output "db_password" {
-    sensitive = true
-    value = local.db_passowrd
+  sensitive = true
+  value     = local.db_passowrd
 }
