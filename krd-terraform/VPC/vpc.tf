@@ -25,7 +25,7 @@ module "vpc" {
 
   #various tags
   public_subnet_tags = {
-    "Name" = "public-subnets"
+    "Type" = "public-subnets"
   }
   private_subnet_tags = {
     "Type" = "private-subnet"
