@@ -16,5 +16,5 @@ output "instance_public_dns_set" {
 
 output "instance_public_dns_map" {
   description = "Public DNS of teh ec2 instances"
-  value       = { for az, instance in aws_instance.myec2 : az => instance.public_dns }
+  value       = tomap({ for az, instance in aws_instance.myec2 : az => instance.public_dns })
 }

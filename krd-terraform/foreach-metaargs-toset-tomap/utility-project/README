@@ -1,0 +1,3 @@
+In the code present in "foreach-metaargs-toset-tomap" directory one step back, If we have the t3.micro in variables then the creation of instance in us-east-1e doesnot work because this az doesnot support t3.micor instanc etype. We need to find a way inorder to know the supported instance types and exclude the values which are not supported.
+We need to find a solution to say that our desired EC2 Instance Type example: t3.micro is supported in that availability zone or not
+In simple terms, give me the availability zone list in a particular region where by desired EC2 Instance Type (t3.micro) is supported
