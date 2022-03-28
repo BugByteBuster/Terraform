@@ -58,3 +58,7 @@ output "igw_id" {
   value       = module.vpc.igw_id
 }
 
+output "common_tags" {
+  description = "Common tags used in vpc"
+  value = local.common_tags
+}
